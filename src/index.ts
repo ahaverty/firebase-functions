@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 // Providers:
+import { firebaseConfig } from './config';
 import * as analytics from './providers/analytics';
 import * as auth from './providers/auth';
 import * as crashlytics from './providers/crashlytics';
@@ -29,7 +30,6 @@ import * as firestore from './providers/firestore';
 import * as https from './providers/https';
 import * as pubsub from './providers/pubsub';
 import * as storage from './providers/storage';
-import { firebaseConfig } from './config';
 export { analytics, auth, crashlytics, database, firestore, https, pubsub, storage };
 
 // Exported root types:
@@ -41,6 +41,7 @@ export * from './cloud-functions';
 // we can deduce.
 if (!process.env.FIREBASE_CONFIG) {
   const  cfg = firebaseConfig();
+
   if (cfg) {
     process.env.FIREBASE_CONFIG = JSON.stringify(cfg);
 
@@ -54,4 +55,24 @@ if (!process.env.FIREBASE_CONFIG) {
   } else {
     console.warn('Warning, FIREBASE_CONFIG environment variable is missing. Initializing firebase-admin will fail');
   }
+
+  console.log(`cfg start`);
+  console.log(cfg);
+  console.log(`cfg end`);
+
+  console.log(`process.env.GCLOUD_PROJECT start`);
+  console.log(process.env.GCLOUD_PROJECT);
+  console.log(`process.env.GCLOUD_PROJECT end`);
+
+  console.log(`process.env.FIREBASE_CONFIG start`);
+  console.log(process.env.FIREBASE_CONFIG);
+  console.log(`process.env.FIREBASE_CONFIG end`);
+
+  console.log(`process.env start`);
+  console.log(process.env);
+  console.log(`process.env end`);
+
+  console.log(`JSON.stringify(cfg); start`);
+  console.log(JSON.stringify(cfg));
+  console.log(`JSON.stringify(cfg); end`);
 }
